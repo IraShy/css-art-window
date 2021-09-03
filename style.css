@@ -6,6 +6,7 @@
     rgb(55, 55, 87)
   );
   --win-frame-color: rgb(216, 215, 215);
+  --win-height: 60vh;
   --star-color: rgb(247, 247, 178);
   --star-size: 3px;
   --snow-color: snow;
@@ -21,7 +22,8 @@
 }
 @keyframes snowfall {
   100% {
-    margin-top: 530px;
+    // margin-top: 530px;
+    margin-top: calc(var(--win-height) - 20px);
   }
 }
 
@@ -35,7 +37,7 @@ body {
   width: 100vw;
 }
 #room {
-  height: 100%;
+  height: 100vh;
   width: 100%;
   background: var(--room-color);
   display: flex;
@@ -44,19 +46,22 @@ body {
 }
 #window-container {
   height: 100%;
-  width: 800px;
+  max-width: 800px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 #window {
-  height: 550px;
-  width: 700px;
+  // height: 550px;
+  height: var(--win-height);
+  max-width: 700px;
+  width: 85%;
   background: var(--window-bg-color);
   border: 10px solid var(--win-frame-color);
   /* positioning in order to use position: absolute on #snow: */
   position: absolute;
-  top: 70px;
+  top: 5%;
 }
 
 /*--------------------------------------*/
@@ -170,7 +175,9 @@ body {
   flex-direction: column;
   align-items: center;
   filter: blur(1px);
-  transform: translateX(-150px) translateY(440px);
+  // transform: translateX(-150px) translateY(440px);
+  // transform: translateX(-20%) translateY(90%);
+  transform: translateX(-20%) translateY(calc(var(--win-height) * .75));
 }
 #head {
   position: relative;
@@ -224,4 +231,13 @@ body {
   border-radius: 50%;
   background-color: gray;
   transform: translateY(-169px) translateX(-77px);
+}
+
+@media screen and (min-width: 600px) {
+  :root {
+    --win-height: 550px
+  }
+  #cat {
+    transform: translateX(-150px) translateY(calc(var(--win-height) * .75));
+  }
 }
